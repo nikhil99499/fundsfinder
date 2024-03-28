@@ -1,0 +1,94 @@
+<!-- approved_applicants_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approved Applicants</title>
+</head>
+<body>
+    <h2>Approved Applicants</h2>
+    <table id="scholarship-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Application Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for approved_application in approved_applications %}
+              <tr>
+                  <td>{{ approved_application.original_application.userprofile }}</td>
+                  <td>{{ approved_application.original_application.userprofile.contact_email }}</td>
+                  <td>{{ approved_application.original_application.userprofile.gender }}</td>
+                  <td>{{ approved_application.original_application.created_at }}</td>
+                  <td>Approved</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+      
+      
+    </table>
+    <style>
+        .scholarship-table {
+            margin: 20px;
+          }
+        
+          #scholarship-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+        
+          #scholarship-table th,
+          #scholarship-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+        
+          #scholarship-table th {
+            background-color: #f2f2f2;
+            font-size: 22px;
+          }
+        
+          #scholarship-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+        
+          #scholarship-table tr:hover {
+            background-color: #ddd;
+          }
+          button a {
+            color: white;
+            padding: 2px;
+            text-decoration: none;
+          }
+          th{
+            text-align: justify;
+          }
+        
+          td {
+            background-color: rgb(162, 167, 241);
+            box-shadow: 10px 16px 16px #422b72;
+            font-size: 20px;
+            padding: 15px;
+            color: black;
+          }
+        
+          button {
+            background-color: rgb(66, 43, 114);
+            color: white;
+            width: auto;
+            height: 30px;
+            padding: 2px;
+            font-size: 20px;
+          }
+        
+          button:hover {
+            text-transform: uppercase;
+          }
+        
+        
+          </style>
+        </body>
+</html>

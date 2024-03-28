@@ -1,0 +1,231 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Scholarships</title>
+</head>
+
+<body>
+  <div class="scholarship-table">
+
+    <form id="search-form" action="{% url 'scholarships' %}" method="GET">
+      <label for="name">Search by  Title:</label>
+      <input type="text" name="name" id="name" placeholder="Search by title">
+
+      <label for="description">Search by  Description:</label>
+      <input type="text" name="description" id="description" placeholder="Search by description">
+
+      <label for="deadline">Search by Deadline:</label>
+      <input type="date" name="deadline" id="deadline">
+
+      <button type="submit">Search</button>
+    </form>
+  
+
+    <table id="scholarship-table">
+        <tr>
+        <th> <a href="{% url 'applicants_list'%}"><button>Applicants</button></a></th>
+        <th> <a href="{% url 'approved_list'%}"><button>Approved list</button></a></th>
+        <th> <a href="{% url 'addscholarship'%}"><button>Add scholarship</button></a></th>
+        <th><a href="{% url 'logout' %}">Logout</a></th>
+
+      </tr>
+
+      <tr>
+        <th>Name</th>
+        <th>Decription</th>
+        <th>Egliblity</th>
+        <th>Deadline</th>
+        <th>Action</th>
+        <th>Action</th>
+
+
+      </tr>
+      <tr>
+
+
+      <tr>
+        {%for scholarship in scholarships%}
+        <td>{{scholarship.name}}</td>
+        <td>{{scholarship.description}}</td>
+        <td>{{scholarship.eligibility_criteria}}</td>
+        <td>{{scholarship.application_deadline}}</td>
+        <td> <a href="{% url 'editscholarship' id=scholarship.id%}"><button>Edit</button></a></td>
+        <td> <a href="{% url 'removescholarship' id=scholarship.id%}"><button>Remove</button></a></td>
+        <tr>
+          <td colspan="9">
+            <div>
+              
+              <ul>
+                {% for comment in data.comments %}
+                <h4>Comments:</h4>
+                    <li>{{ comment.user.username }} - {{ comment.comment }}
+                      <a href="{% url 'edit_comment' comment.id %}">edit</a>
+                      <a href="{% url 'delete_comment' comment.id %}">Delete</a>
+                    </li>
+              
+                {% endfor %}
+            </ul>
+            </div>
+            <div>
+            
+              <ul>
+                {% for rating in data.ratings %}
+                <h4>Ratings:</h4>
+                    <li>{{ rating.user.username }} - {{ rating.rating }}
+                      <a href="{% url 'edit_rating' rating.id%}">edit</a>
+                      <a href="{% url 'delete_rating' rating.id %}">Delete</a>
+                </li>
+            
+                {% endfor %}
+            </ul>
+            </div>
+
+              <div>
+                <ul>
+                  <h4>
+                    
+
+                  </h4>
+
+                </ul>
+            </div>
+          </td>
+        </tr>
+
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <style>
+  .scholarship-table {
+      margin: 20px;
+    }
+
+    #scholarship-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #scholarship-table th,
+    #scholarship-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #scholarship-table th {
+      background-color: #f2f2f2;
+      font-size: 22px;
+    }
+
+    #scholarship-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #scholarship-table tr:hover {
+      background-color: #ddd;
+    }
+    button a {
+      color: white;
+      padding: 2px;
+      text-decoration: none;
+    }
+    th{
+            text-align: justify;
+          }
+
+    td {
+      background-color: rgb(162, 167, 241);
+      box-shadow: 10px 16px 16px #422b72;
+      font-size: 20px;
+      padding: 15px;
+      color: black;
+    }
+
+    button {
+      background-color: rgb(66, 43, 114);
+      color: white;
+      width: auto;
+      height: 30px;
+      padding: 2px;
+      font-size: 20px;
+    }
+
+    button:hover {
+      text-transform: uppercase;
+    }
+ 
+    #search-form {
+      margin-bottom: 20px;
+    }
+
+    #search-form label {
+      margin-right: 10px;
+    }
+
+    #search-form input[type="text"],
+    #search-form input[type="date"] {
+      margin-right: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #search-form button {
+      padding: 5px 10px;
+      background-color: rgb(66,43,114);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: auto;
+      height: 30px;
+      font-size: 20px;
+    }
+
+    #search-form button:hover {
+      background-color: #333;
+      text-transform: uppercase;
+    }
+
+    button a {
+      color: white;
+      padding: 2px;
+      text-decoration: none;
+    }
+    th{
+            text-align: justify;
+          }
+    td {
+      background-color: rgb(162, 167, 241);
+      box-shadow: 10px 16px 16px #422b72;
+      font-size: 20px;
+      padding: 15px;
+      color: black;
+    }
+
+    button {
+      background-color: rgb(66, 43, 114);
+      color: white;
+      width: auto;
+      height: 30px;
+      padding: 2px;
+      font-size: 20px;
+    }
+
+    button:hover {
+      text-transform: uppercase;
+    }
+  </style>  
+
+
+
+</body>
+
+</html>
