@@ -42,10 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'scholarships',
-    'scholarship',
     'userprofile',
     'notifications',
-    
+    'django_countries',
    
 ]
 

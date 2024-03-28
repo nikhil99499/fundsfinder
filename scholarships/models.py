@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
+
 
 # Create your models here.
 class Scholarships(models.Model):
@@ -12,6 +14,8 @@ class Scholarships(models.Model):
     Contact_email=models.EmailField(blank=True, null=True)
     id= models.IntegerField(primary_key=True,null=False)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
+    country = CountryField(blank=True, null=True)
+
 
 
 
